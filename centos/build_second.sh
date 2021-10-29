@@ -1,0 +1,1 @@
+docker build . -f second.Dockerfile --progress=plain  -t second-centos

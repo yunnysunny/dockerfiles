@@ -1,0 +1,1 @@
+docker build . -f first.Dockerfile --progress=plain --no-cache -t first-centos
