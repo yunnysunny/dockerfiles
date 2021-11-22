@@ -8,3 +8,6 @@ RUN sed -i -e '/plugins=1/d' -e '/plugins=0/d' /etc/yum.conf
 RUN yum install epel-release -y && yum clean all && rm -rf /var/cache/yum
 RUN yum install wget curl make tcpdump net-tools bind-utils telnet \
     logrotate ca-certificates which crontabs -y && yum clean all && rm -rf /var/cache/yum
+
+# 使用东八区时区
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
