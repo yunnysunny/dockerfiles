@@ -17,6 +17,7 @@ RUN source /root/.bashrc \
 ENV PATH $TNVM_DIR/versions/alinode/$ALINODE_VERSION/bin:$PATH
 ENV ENABLE_NODE_LOG YES
 RUN mkdir -p /data/alinode
+ENV NODE_LOG_DIR /data/alinode
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 COPY . /
