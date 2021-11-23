@@ -5,5 +5,5 @@ ARG JMETER_VERSION
 RUN wget https://mirrors.tuna.tsinghua.edu.cn/apache/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz && \
     tar -zxvf apache-jmeter-${JMETER_VERSION}.tgz && \
     rm -rf apache-jmeter-${JMETER_VERSION}.tgz
-
-CMD while true; do sleep 1; done
+COPY . /
+ENTRYPOINT [ "/entrypoint.sh" ]
