@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-ALINODE_VERSION=6.6.1
+ALINODE_VERSION=6.7.0
 TAG_LATEST=registry.cn-hangzhou.aliyuncs.com/whyun/base:alinode-latest
 TAG_VERSION=registry.cn-hangzhou.aliyuncs.com/whyun/base:alinode-${ALINODE_VERSION}
 
