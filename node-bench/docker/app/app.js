@@ -5,9 +5,10 @@ const process = require('process');
 
 const ENV = process.env;
 
-const INTERVAL = Number(ENV.REQ_INTERVAL_MS) || 1;
+const INTERVAL = Number(ENV.REQ_INTERVAL_MS) || 10;
 const URL = ENV.REQ_URL;
 const POOL_SIZE = Number(ENV.HTTP_POOL_SIZE) || 0;
+const REQ_TIMEOUT = Number(ENV.REQ_TIMEOUT_MS) || 0;
 let agent = undefined;
 
 if (POOL_SIZE > 0) {
@@ -25,13 +26,14 @@ if (!URL) {
 var ok = 0;
 var failed = 0;
 setInterval(function() {
-	const req = http.request(URL, {agent}, function(res) {
+	const req = http.request(URL, {agent, timeout: REQ_TIMEOUT}, function(res) {
 		ok++;
 	});
 	req.on('error', function(err) {
 		console.error(err)
 		failed++;
 	});
+	req.end();
 }, INTERVAL);
 
 const STATISTIC_INTERVAL = 10 * 1000;
