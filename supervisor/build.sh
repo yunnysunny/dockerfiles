@@ -1,10 +1,21 @@
 #!/bin/bash
 set -e
 
-TAG_LATEST=registry.cn-hangzhou.aliyuncs.com/whyun/base:supervisor-latest
-
-docker pull centos:7
-docker build . -f ./Dockerfile -t ${TAG_LATEST} --progress=plain
+TAG_LATEST_CENTOS=registry.cn-hangzhou.aliyuncs.com/whyun/base:supervisor-latest
+TAG_LATEST_UBUNTU=registry.cn-hangzhou.aliyuncs.com/whyun/base:supervisor-ubuntu-latest
+CENTOS_IMAGE=centos:7
+UBUNTU_IMAGE=ubuntu
+docker pull ${CENTOS_IMAGE}
+docker build . -f ./Dockerfile -t ${TAG_LATEST_CENTOS} \
+    --build-arg IMAGE_NAME=${CENTOS_IMAGE} \
+    --build-arg IMAGE_TYPE=centos \
+    --progress=plain
+docker pull ${UBUNTU_IMAGE}
+docker build . -f ./Dockerfile -t ${TAG_LATEST_UBUNTU} \
+    --build-arg IMAGE_NAME=${UBUNTU_IMAGE} \
+    --build-arg IMAGE_TYPE=ubuntu \
+    --progress=plain
 if [ "$NEED_PUSH" = "1" ] ; then
-    docker push ${TAG_LATEST}
+    docker push ${TAG_LATEST_CENTOS}
+    docker push ${TAG_LATEST_UBUNTU}
 fi
