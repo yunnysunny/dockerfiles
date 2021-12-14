@@ -19,6 +19,8 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 # 必须添加这两个环境变量，否则 supervisor 无法在 python3 下启动
 ENV LC_ALL "en_US.UTF-8"
 ENV LANG "en_US.UTF-8"
+ARG CRON_START_OPTION
+ENV CRON_START_OPTION ${CRON_START_OPTION}
 
 # 添加启动脚本
 COPY docker/app_init.sh /
