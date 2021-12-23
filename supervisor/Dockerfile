@@ -26,4 +26,5 @@ ENV CRON_START_OPTION ${CRON_START_OPTION}
 COPY docker/app_init.sh /
 COPY docker/app.init.d  /app.init.d
 COPY docker/entrypoint.sh /
+RUN mkdir -p /data/supervisor/log/
 ENTRYPOINT [ "/entrypoint.sh" ]

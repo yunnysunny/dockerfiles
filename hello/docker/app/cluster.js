@@ -81,8 +81,9 @@ if (cluster.isMaster) {
       return doFb(req, urlObj, res)
     }
     res.writeHead(200);
-    res.end('hello world\n');    
-  }).listen(8000);
+    res.end('hello world\n');
+    console.log(`request from ${req.socket.localAddress} on path ${path}`)
+  }).listen(process.env.APP_PORT || 8000);
   server.timeout = TIMEOUT_SERVER;
   server.keepAliveTimeout = TIMEOUT_SERVER;
 

@@ -1,5 +1,4 @@
 #!/bin/bash
 
 /bin/consul-register
-
-exec "$@"
+node /app/cluster.js
