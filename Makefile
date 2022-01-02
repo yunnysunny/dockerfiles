@@ -9,8 +9,8 @@ BASE_SRC_FOLDER := $(filter-out .github, $(BASE_SRC_FOLDER))
 .PHONY:default clean
  
 default:
-	@for dir in ${BASE_SRC_FOLDER}; do 
-		cd $(CUR_PATH)/$$dir; ./build.sh; cd $(CUR_PATH); 
+	@for dir in ${BASE_SRC_FOLDER}; do \
+		cd $(CUR_PATH)/$$dir; ./build.sh; cd $(CUR_PATH); \
 	done
 	@echo push images done!
  
