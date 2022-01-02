@@ -1,10 +1,11 @@
 #!/bin/bash
 set -e
 
-TAG_LATEST=registry.cn-hangzhou.aliyuncs.com/whyun/base:jmeter-latest
+TAG_ALI_LATEST=registry.cn-hangzhou.aliyuncs.com/whyun/base:jmeter-latest
+TAG_OFFICAL_LATEST=yunnysunny/jmeter
 JMETER_VERSION=5.4.1
 docker pull registry.cn-hangzhou.aliyuncs.com/whyun/base:jdk11-latest
-docker build ./docker -f ./jmeter.Dockerfile -t ${TAG_LATEST} --progress=plain  --build-arg JMETER_VERSION=${JMETER_VERSION}
+docker build ./docker -f ./jmeter.Dockerfile -t ${TAG_ALI_LATEST} --progress=plain  --build-arg JMETER_VERSION=${JMETER_VERSION}
 if [ "$NEED_PUSH" = "1" ] ; then
-    docker push ${TAG_LATEST}
+    docker push ${TAG_ALI_LATEST}
 fi
