@@ -1,0 +1,70 @@
+name: Build and Publish Docker Image
+
+# refer to https://github.com/actions/starter-workflows/blob/main/ci/docker-publish.yml 
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - main
+
+env:
+  NEED_PUSH: 1
+  # <repo>
+  PUSH_TO_OFFICAL: 1
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Login against a Docker registry except on PR
+      # https://github.com/docker/login-action
+      - name: Log into registry dockerhub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+      - name: Log into registry aliyun
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1
+        with:
+          registry: registry.cn-beijing.aliyuncs.com
+          username: ${{ secrets.DOCKER_ALI_USER }}
+          password: ${{ secrets.DOCKER_ALI_TOKEN }}
+
+      # Build and push Docker image with Buildx (don't push on PR)
+      # https://github.com/docker/build-push-action
+      - name: Build and push Docker image
+        run: |
+
+          # List of dockerfiles to create in container
+          dockerfiles=(
+            "alinode",
+            "centos",
+            "go",
+            "hello",
+            "jmeter",
+            "node-bench",
+            "supervisor",
+            "ubuntu",
+            "zookeeper"
+          )
+
+          # Run docker-compose exec to make them
+          for folder in "${dockerfiles[@]}"
+          do
+            cd $folder
+            ./build.sh
+            cd ..
+          done
