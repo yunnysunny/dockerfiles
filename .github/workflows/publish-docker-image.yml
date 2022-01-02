@@ -36,9 +36,10 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
       - name: Log into registry aliyun
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v1
+        uses: aliyun/acr-login@v1
         with:
-          registry: registry.cn-beijing.aliyuncs.com
+          login-server: https://registry.cn-beijing.aliyuncs.com
+          region-id: cn-beijing  # 3
           username: ${{ secrets.DOCKER_ALI_USER }}
           password: ${{ secrets.DOCKER_ALI_TOKEN }}
 
