@@ -45,6 +45,7 @@ jobs:
 
       # Build and push Docker image with Buildx (don't push on PR)
       - name: Build and push Docker image
+        working-directory: ./
         run: |
 
           # List of dockerfiles to create in container
