@@ -46,25 +46,4 @@ jobs:
       # Build and push Docker image with Buildx (don't push on PR)
       - name: Build and push Docker image
         working-directory: ./
-        run: |
-
-          # List of dockerfiles to create in container
-          dockerfiles=(
-            "alinode",
-            "centos",
-            "go",
-            "hello",
-            "jmeter",
-            "node-bench",
-            "supervisor",
-            "ubuntu",
-            "zookeeper"
-          )
-
-          # Run docker-compose exec to make them
-          for folder in "${dockerfiles[@]}"
-          do
-            cd $folder
-            ./build.sh
-            cd ..
-          done
+        run: make
