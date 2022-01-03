@@ -14,6 +14,7 @@ docker pull centos:7
 docker build . -f ./Dockerfile -t ${TAG_ALI_LATEST} -t ${TAG_OFFICAL_LATEST} -t ${TAG_CURRENT} \
     --build-arg GO_VERSION=${GO_VERSION} --build-arg GOPRIVATE=${GOPRIVATE}
 if [ "$NEED_PUSH" = "1" ] ; then
+    info_print "push to ${TAG_ALI_LATEST}"
     docker push ${TAG_ALI_LATEST}
     if [ "$PUSH_TO_OFFICAL" = "1" ] ; then docker push ${TAG_OFFICAL_LATEST}; fi
     docker push ${TAG_CURRENT}

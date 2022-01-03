@@ -17,6 +17,10 @@ stderr_print() {
     fi
 }
 
+info_print() {
+    echo -e "\033[32;1m$*\033[0m"
+}
+
 load_cache() {
     local SAVE_NAME="$1"
     FROM_PATH="${CACHE_FROM_DIR}/${SAVE_NAME}.tar"
