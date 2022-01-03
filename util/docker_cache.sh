@@ -27,6 +27,8 @@ load_cache() {
     if [ -f "$FROM_PATH" ] ; then
         echo load cache "$FROM_PATH"
         docker load "$FROM_PATH"
+    else
+        echo cache "$FROM_PATH" not found
     fi
 }
 
@@ -34,7 +36,10 @@ save_cache() {
     local SAVE_NAME="$1"
     shift
     FROM_PATH="${CACHE_FROM_DIR}/${SAVE_NAME}.tar"
-    if [ -f "$TO_PATH" ] ; then
+    if [ -d "$CACHE_FROM_DIR" ] ; then
+        echo save "$@" to "$FROM_PATH"
         docker save "$@" > "$FROM_PATH"
+    else
+        echo cache directory "$CACHE_FROM_DIR" not exist
     fi
 }
