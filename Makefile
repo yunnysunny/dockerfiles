@@ -29,10 +29,10 @@ renew:
 	fi
 
 init:
-	if [ $(CACHE_FROM_DIR) ]; then
+	if [ "$(CACHE_FROM_DIR)" != "" ]; then
 		mkdir -p $(CACHE_FROM_DIR);
 	fi
 
-	if [ $(CACHE_TO_DIR) ]; then
+	if [ "$(CACHE_TO_DIR)" != "" ]; then
 		mkdir -p $(CACHE_TO_DIR);
 	fi
