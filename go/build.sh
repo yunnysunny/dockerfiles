@@ -16,7 +16,10 @@ docker build . -f ./Dockerfile -t ${TAG_ALI_LATEST} -t ${TAG_OFFICAL_LATEST} -t 
 if [ "$NEED_PUSH" = "1" ] ; then
     info_print "push to ${TAG_ALI_LATEST}"
     docker push ${TAG_ALI_LATEST}
-    if [ "$PUSH_TO_OFFICAL" = "1" ] ; then docker push ${TAG_OFFICAL_LATEST}; fi
+    if [ "$PUSH_TO_OFFICAL" = "1" ] ; then 
+        info_print "push to ${TAG_OFFICAL_LATEST}";
+        docker push ${TAG_OFFICAL_LATEST};    
+    fi
     docker push ${TAG_CURRENT}
 fi
 

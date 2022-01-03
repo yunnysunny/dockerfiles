@@ -15,7 +15,10 @@ docker build ./docker -f ./alinode.Dockerfile -t ${TAG_ALI_LATEST} -t ${TAG_OFFI
   --build-arg ALINODE_VERSION=${ALINODE_VERSION}
 if [ "$NEED_PUSH" = "1" ] ; then
     docker push ${TAG_ALI_LATEST}
-    if [ "$PUSH_TO_OFFICAL" = "1" ] ; then docker push ${TAG_OFFICAL_LATEST}; fi
+    if [ "$PUSH_TO_OFFICAL" = "1" ] ; then 
+        info_print "push to ${TAG_OFFICAL_LATEST}";
+        docker push ${TAG_OFFICAL_LATEST};    
+    fi
     docker push ${TAG_VERSION}
 fi
 save_cache $SAVE_NAME ${TAG_ALI_LATEST} ${TAG_OFFICAL_LATEST}
