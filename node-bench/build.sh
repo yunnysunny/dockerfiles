@@ -15,7 +15,7 @@ docker build ./docker -f ./bench.Dockerfile \
     -t ${TAG_ALI_LATEST} \
     -t ${TAG_OFFICAL_LATEST} \
     -t ${TAG_ALI_VERSION} \
-    -T ${TAG_OFFICAL_VERSION} \
+    -t ${TAG_OFFICAL_VERSION} \
     --progress=plain
 if [ "$NEED_PUSH" = "1" ] ; then
     docker push ${TAG_ALI_LATEST}
