@@ -15,7 +15,7 @@ default:
 		cd $(CUR_PATH)/$$dir; \
 		echo begin build $$dir; \
 		./build.sh || exit $?; \
-		echo push image $$dir done!
+		echo push image $$dir done! \
 		cd $(CUR_PATH); \
 	done
  
