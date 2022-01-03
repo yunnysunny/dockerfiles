@@ -11,10 +11,10 @@ SAVE_NAME=go
 load_cache $SAVE_NAME
 
 docker pull centos:7
-BUILD_PARAM=". -f ./Dockerfile -t ${TAG_ALI_LATEST} -t ${TAG_OFFICAL_LATEST} -t ${TAG_ALI_CURRENT} \
+BUILD_PARAM="-t ${TAG_ALI_LATEST} -t ${TAG_OFFICAL_LATEST} -t ${TAG_ALI_CURRENT} \
     --build-arg GO_VERSION=${GO_VERSION} --build-arg GOPRIVATE=${GOPRIVATE}"
 info_print "$BUILD_PARAM"
-docker build "$BUILD_PARAM"
+docker build . -f ./Dockerfile "$BUILD_PARAM"
 
 if [ "$NEED_PUSH" = "1" ] ; then
     info_print "push to ${TAG_ALI_LATEST}"
