@@ -22,7 +22,7 @@ docker build . -f ./Dockerfile \
 docker pull ${UBUNTU_IMAGE}
 docker build . -f ./Dockerfile \
     -t ${TAG_ALI_LATEST_UBUNTU} \
-    -t ${TAG_OFFICAL_LATEST_CENTOS} \
+    -t ${TAG_OFFICAL_LATEST_UBUNTU} \
     --build-arg IMAGE_NAME=${UBUNTU_IMAGE} \
     --build-arg IMAGE_TYPE=ubuntu \
     --build-arg CRON_START_OPTION=f \
