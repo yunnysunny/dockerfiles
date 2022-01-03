@@ -14,6 +14,7 @@ env:
   PUSH_TO_OFFICAL: 1
   CACHE_FROM_DIR: /tmp/.buildx-cache
   CACHE_TO_DIR: /tmp/.buildx-cache-new
+  DOCKER_BUILDKIT: 1
 
 
 jobs:
