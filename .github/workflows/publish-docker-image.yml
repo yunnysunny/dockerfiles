@@ -57,7 +57,12 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
       - name: Log into registry aliyun
         if: github.event_name != 'pull_request'
-        run: docker login -u ${{ secrets.DOCKER_ALI_USER }} -p ${{ secrets.DOCKER_ALI_TOKEN }} https://registry.cn-hangzhou.aliyuncs.com
+        uses: aliyun/acr-login@v1
+        with:
+          login-server: https://registry.cn-hangzhou.aliyuncs.com
+          region-id: cn-hangzhou
+          username: ${{ secrets.DOCKER_ALI_USER }}
+          password: ${{ secrets.DOCKER_ALI_TOKEN }}
       - name: Init directory
         run: make init
       # Build and push Docker image with Buildx (don't push on PR)
