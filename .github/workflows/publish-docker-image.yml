@@ -13,7 +13,6 @@ env:
   NEED_PUSH: 1
   PUSH_TO_OFFICAL: 1
   CACHE_FROM_DIR: /tmp/.buildx-cache
-  CACHE_TO_DIR: /tmp/.buildx-cache-new
   DOCKER_BUILDKIT: 1
 
 
@@ -41,7 +40,7 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
-          path: /tmp/.buildx-cache
+          path: ${{ env.CACHE_FROM_DIR }}
           # Key is named differently to avoid collision
           key: ${{ runner.os }}-multi-buildx-${{ github.sha }}
           restore-keys: |
@@ -69,5 +68,3 @@ jobs:
       - name: Build and push Docker image
         working-directory: ./
         run: make
-      - name: Move cache
-        run: make renew

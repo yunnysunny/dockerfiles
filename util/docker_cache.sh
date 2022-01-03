@@ -33,8 +33,8 @@ load_cache() {
 save_cache() {
     local SAVE_NAME="$1"
     shift
-    TO_PATH="${CACHE_TO_DIR}/${SAVE_NAME}.tar"
+    FROM_PATH="${CACHE_FROM_DIR}/${SAVE_NAME}.tar"
     if [ -f "$TO_PATH" ] ; then
-        docker save "$@" > "$TO_PATH"
+        docker save "$@" > "$FROM_PATH"
     fi
 }
