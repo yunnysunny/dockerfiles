@@ -59,8 +59,8 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: aliyun/acr-login@v1
         with:
-          login-server: https://registry.cn-beijing.aliyuncs.com
-          region-id: cn-beijing  # 3
+          login-server: https://registry.cn-hangzhou.aliyuncs.com
+          region-id: cn-hangzhou
           username: ${{ secrets.DOCKER_ALI_USER }}
           password: ${{ secrets.DOCKER_ALI_TOKEN }}
       - name: Init directory
