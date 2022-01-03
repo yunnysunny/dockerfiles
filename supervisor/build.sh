@@ -4,7 +4,7 @@ set -e
 TAG_ALI_LATEST_CENTOS=registry.cn-hangzhou.aliyuncs.com/whyun/base:supervisor-latest
 TAG_OFFICAL_LATEST_CENTOS=yunnysunny/supervisor
 TAG_ALI_LATEST_UBUNTU=registry.cn-hangzhou.aliyuncs.com/whyun/base:supervisor-ubuntu-latest
-TAG_OFFICAL_LATEST_UBUNTU=unnysunny/supervisor-ubuntu
+TAG_OFFICAL_LATEST_UBUNTU=yunnysunny/supervisor-ubuntu
 CENTOS_IMAGE=centos:7
 UBUNTU_IMAGE=ubuntu
 SAVE_NAME=supervisor
