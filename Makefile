@@ -20,19 +20,19 @@ default:
 	done
  
 renew:
-	if [ -d $(CACHE_FROM_DIR) ]; then
-		rm -rf $(CACHE_FROM_DIR);
+	if [ -d $(CACHE_FROM_DIR) ]; then \
+		rm -rf $(CACHE_FROM_DIR); \
 	fi
 
-	if [ -d $(CACHE_TO_DIR) ]; then
-		mv $(CACHE_TO_DIR) $(CACHE_FROM_DIR);
+	if [ -d $(CACHE_TO_DIR) ]; then \
+		mv $(CACHE_TO_DIR) $(CACHE_FROM_DIR); \
 	fi
 
 init:
-	if [ "$(CACHE_FROM_DIR)" != "" ]; then
-		mkdir -p $(CACHE_FROM_DIR);
+	if [ "$(CACHE_FROM_DIR)" != "" ]; then \
+		mkdir -p $(CACHE_FROM_DIR); \
 	fi
 
-	if [ "$(CACHE_TO_DIR)" != "" ]; then
-		mkdir -p $(CACHE_TO_DIR);
+	if [ "$(CACHE_TO_DIR)" != "" ]; then \
+		mkdir -p $(CACHE_TO_DIR); \
 	fi
