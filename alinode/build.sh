@@ -30,4 +30,3 @@ if [ "$NEED_PUSH" = "1" ] ; then
         docker push  --all-tags ${TAG_OFFICAL_VERSION}
     fi    
 fi
-
