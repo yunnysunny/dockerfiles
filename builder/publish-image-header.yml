@@ -15,6 +15,6 @@ on:
 env:
   NEED_PUSH: 1
   PUSH_TO_OFFICAL: 1
-  CACHE_FROM_DIR: /tmp/.buildx-cache
+  CACHE_FROM_DIR: /tmp/.buildx-cache-for-${IMAGE_NAME}
   DOCKER_BUILDKIT: 1
   BUILD_NAME: ${IMAGE_NAME}

@@ -15,7 +15,7 @@ on:
 env:
   NEED_PUSH: 1
   PUSH_TO_OFFICAL: 1
-  CACHE_FROM_DIR: /tmp/.buildx-cache
+  CACHE_FROM_DIR: /tmp/.buildx-cache-for-hello
   DOCKER_BUILDKIT: 1
   BUILD_NAME: hello
 
@@ -40,6 +40,7 @@ jobs:
         # Only worked for us with this option on 🤷‍♂️
         with:
           install: true
+          driver: docker-container
 
       - name: Cache Docker layers
         uses: actions/cache@v2
