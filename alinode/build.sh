@@ -20,7 +20,7 @@ if [ -d "$CACHE_FROM_DIR" ] ; then
   BUILD_PARAMS="${BUILD_PARAMS}  --cache-from type=local,src=${CACHE_FILE} \
   --cache-to type=local,mode=max,dest=${CACHE_FILE}"
 fi
-docker build $BUILD_PARAMS
+docker buildx build $BUILD_PARAMS
 if [ "$NEED_PUSH" = "1" ] ; then
     docker push --all-tags ${TAG_ALI_LATEST}
     docker push  --all-tags ${TAG_VERSION}
