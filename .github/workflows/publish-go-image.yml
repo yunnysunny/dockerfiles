@@ -1,4 +1,4 @@
-name: Build and Publish alinode Image
+name: Build and Publish go Image
 
 # refer to https://github.com/actions/starter-workflows/blob/main/ci/docker-publish.yml 
 
@@ -9,7 +9,7 @@ on:
     branches:
       - master
     paths:
-      - "alinode/**"
+      - "go/**"
       - "util/**"
 
 env:
@@ -17,7 +17,7 @@ env:
   PUSH_TO_OFFICAL: 1
   CACHE_FROM_DIR: /tmp/.buildx-cache
   DOCKER_BUILDKIT: 1
-  BUILD_NAME: alinode
+  BUILD_NAME: go
 
 
 jobs:

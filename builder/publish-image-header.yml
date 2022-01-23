@@ -1,0 +1,20 @@
+name: Build and Publish ${IMAGE_NAME} Image
+
+# refer to https://github.com/actions/starter-workflows/blob/main/ci/docker-publish.yml 
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the master branch
+  push:
+    branches:
+      - master
+    paths:
+      - "${IMAGE_NAME}/**"
+      - "util/**"
+
+env:
+  NEED_PUSH: 1
+  PUSH_TO_OFFICAL: 1
+  CACHE_FROM_DIR: /tmp/.buildx-cache
+  DOCKER_BUILDKIT: 1
+  BUILD_NAME: ${IMAGE_NAME}
