@@ -1,7 +1,5 @@
 name: Build and Publish jmeter Image
 
-# refer to https://github.com/actions/starter-workflows/blob/main/ci/docker-publish.yml 
-
 on:
   # Trigger the workflow on push or pull request,
   # but only for the master branch
@@ -11,6 +9,8 @@ on:
     paths:
       - "jmeter/**"
       - "util/**"
+    paths-ignore:
+      - '**.md'
 
 env:
   NEED_PUSH: 1

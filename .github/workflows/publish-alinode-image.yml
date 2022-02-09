@@ -1,7 +1,5 @@
 name: Build and Publish alinode Image
 
-# refer to https://github.com/actions/starter-workflows/blob/main/ci/docker-publish.yml 
-
 on:
   # Trigger the workflow on push or pull request,
   # but only for the master branch
@@ -11,6 +9,8 @@ on:
     paths:
       - "alinode/**"
       - "util/**"
+    paths-ignore:
+      - '**.md'
 
 env:
   NEED_PUSH: 1
@@ -40,7 +40,7 @@ jobs:
         # Only worked for us with this option on 🤷‍♂️
         with:
           install: true
-          driver: docker
+          driver: docker-container
 
       - name: Cache Docker layers
         uses: actions/cache@v2
