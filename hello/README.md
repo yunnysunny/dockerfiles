@@ -1,6 +1,6 @@
 # node hello-world
 
-基于父镜像 [registry.cn-hangzhou.aliyuncs.com/whyun/base:alinode-latest](../alinode)。运行此镜像的容器，支持通过环境变量 `APP_PORT` 来指定 http 服务的监听端口（默认为 8000）。通过环境变量 `PROCESS_COUNT` 来控制启动的子进程个数，默认为 2。通过环境变量 `SINGLE_PROCESS` 来控制是否启用单进程，如果设置为 1，则不适用 cluster 模式，运行后只启动一个单进程，默认启动多进程。通过环境变量 `SHOW_REQ_LOG` 来控制是否打印请求日志到控制台，设置为 `1` 代表启动，默认不打印请求日志。
+基于父镜像 [registry.cn-hangzhou.aliyuncs.com/whyun/base:alinode-latest](../alinode)。运行此镜像的容器，支持通过环境变量 `APP_PORT` 来指定 http 服务的监听端口（默认为 8000）。通过环境变量 `PROCESS_COUNT` 来控制启动的子进程个数，默认为 2。通过环境变量 `SINGLE_PROCESS` 来控制是否启用单进程，如果设置为 1，则不适用 cluster 模式，运行后只启动一个单进程，默认启动多进程。通过环境变量 `SHOW_REQ_LOG` 来控制是否打印请求日志到控制台，设置为 `1` 代表启动，默认不打印请求日志。环境变量 `LISTEN_ADDR` 来控制端口监听的 IP 地址，默认为空。
 
 ## 镜像 tag
 

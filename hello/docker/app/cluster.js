@@ -75,7 +75,7 @@ function startServer() {
       console.log(`request from ${req.socket.localAddress} on path ${path}`);
     }
     
-  }).listen(ENV.APP_PORT || 8000);
+  }).listen(ENV.APP_PORT || 8000, ENV.LISTEN_ADDR);
   server.timeout = TIMEOUT_SERVER;
   server.keepAliveTimeout = TIMEOUT_SERVER;
 
