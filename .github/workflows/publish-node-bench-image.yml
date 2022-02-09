@@ -9,8 +9,6 @@ on:
     paths:
       - "node-bench/**"
       - "util/**"
-    paths-ignore:
-      - '**.md'
 
 env:
   NEED_PUSH: 1

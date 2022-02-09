@@ -9,8 +9,6 @@ on:
     paths:
       - "centos/**"
       - "util/**"
-    paths-ignore:
-      - '**.md'
 
 env:
   NEED_PUSH: 1

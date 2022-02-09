@@ -9,8 +9,6 @@ on:
     paths:
       - "${IMAGE_NAME}/**"
       - "util/**"
-    paths-ignore:
-      - '**.md'
 
 env:
   NEED_PUSH: 1

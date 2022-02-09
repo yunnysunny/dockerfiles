@@ -9,8 +9,6 @@ on:
     paths:
       - "alinode/**"
       - "util/**"
-    paths-ignore:
-      - '**.md'
 
 env:
   NEED_PUSH: 1
