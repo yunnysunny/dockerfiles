@@ -1,8 +1,8 @@
 const cluster = require('cluster');
 const http = require('http');
-const url = require('url');
 const numCPUs = 2;//require('os').cpus().length;
 const process = require('process');
+const ENV = process.env;
 function fibonacciCalc(n) {
   if (n === 0 | n === 1) {
     return 1;
@@ -43,7 +43,7 @@ function parseUrl(url) {
   const result = {path:'', query: {}};
   const path = url;
   const paramStart = path.indexOf('?');
-  if (paramStart != -1) {
+  if (paramStart !== -1) {
     const queryString = url.substring(paramStart + 1);
     result.path = url.substring(0, paramStart);
     const pairs = queryString.split('&');
@@ -59,18 +59,7 @@ function parseUrl(url) {
   return result;
 }
 
-if (cluster.isMaster) {
-  console.log(`Primary ${process.pid} is running`);
-
-  // Fork workers.
-  for (let i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
-
-  cluster.on('exit', (worker, code, signal) => {
-    console.log(`worker ${worker.process.pid} died`);
-  });
-} else {
+function startServer() {
   const TIMEOUT_SERVER = 1000 * 60 * 30;
   // Workers can share any TCP connection
   // In this case it is an HTTP server
@@ -82,10 +71,33 @@ if (cluster.isMaster) {
     }
     res.writeHead(200);
     res.end('hello world\n');
-    console.log(`request from ${req.socket.localAddress} on path ${path}`)
-  }).listen(process.env.APP_PORT || 8000);
+    if (ENV.SHOW_REQ_LOG === '1') {
+      console.log(`request from ${req.socket.localAddress} on path ${path}`);
+    }
+    
+  }).listen(ENV.APP_PORT || 8000);
   server.timeout = TIMEOUT_SERVER;
   server.keepAliveTimeout = TIMEOUT_SERVER;
 
   console.log(`Worker ${process.pid} started`);
 }
+
+if (ENV.SINGLE_PROCESS === '1') {
+  startServer();
+} else {
+  if (cluster.isMaster) {
+    console.log(`Primary ${process.pid} is running`);
+    const processCount = Number(ENV.PROCESS_COUNT) || numCPUs;
+    // Fork workers.
+    for (let i = 0; i < processCount; i++) {
+      cluster.fork();
+    }
+
+    cluster.on('exit', (worker, code, signal) => {
+      console.log(`worker ${worker.process.pid} died`);
+    });
+  } else {
+    startServer();
+  }
+}
+
