@@ -45,7 +45,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./centos
-          file: ./centos/centos.dockerfile
+          file: ./centos/centos.Dockerfile
           push: true
           tags: yunnysunny/centos:latest
           cache-from: type=registry,ref=yunnysunny/centos:buildcache
