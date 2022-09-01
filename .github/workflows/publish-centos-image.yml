@@ -57,6 +57,7 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
           repository: yunnysunny/centos
+          readme-filepath: ./centos/README.md
       - name: Build and push jdk11
         uses: docker/build-push-action@v3
         with:
@@ -73,3 +74,4 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
           repository: yunnysunny/jdk11
+          readme-filepath: ./centos/README.md
