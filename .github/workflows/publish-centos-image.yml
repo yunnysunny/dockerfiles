@@ -61,6 +61,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./centos
+          file: ./centos/centos.dockerfile
           push: true
           tags: yunnysunny/centos:latest
           cache-from: type=registry,ref=yunnysunny/centos:buildcache
@@ -76,6 +77,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./centos
+          file: ./centos/java.Dockerfile
           push: true
           tags: yunnysunny/jdk11:latest
           cache-from: type=registry,ref=yunnysunny/jdk11:buildcache
