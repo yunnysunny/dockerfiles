@@ -48,14 +48,6 @@ jobs:
           # Key is named differently to avoid collision
           key: ${{ runner.os }}-${{ env.BUILD_NAME }}-buildx-${{ github.sha }}
 
-      - name: Log into registry aliyun
-        if: steps.cache.outputs.cache-hit != 'true'
-        uses: aliyun/acr-login@v1
-        with:
-          login-server: https://registry.cn-hangzhou.aliyuncs.com
-          region-id: cn-hangzhou
-          username: ${{ secrets.DOCKER_ALI_USER }}
-          password: ${{ secrets.DOCKER_ALI_TOKEN }}
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
       - name: Log into registry dockerhub
@@ -64,10 +56,34 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-      - name: Init directory
-        run: make init
-      # Build and push Docker image with Buildx (don't push on PR)
-      - name: Build and push Docker image
-        if: steps.cache.outputs.cache-hit != 'true'
-        working-directory: ./${{ env.BUILD_NAME }}
-        run: ./build.sh
+
+      - name: Build and push centos
+        uses: docker/build-push-action@v3
+        with:
+          context: ./centos
+          push: true
+          tags: yunnysunny/centos:latest
+          cache-from: type=registry,ref=yunnysunny/centos:buildcache
+          cache-to: type=registry,ref=yunnysunny/centos:buildcache,mode=max
+      - name: Update centos description
+        uses: peter-evans/dockerhub-description@v2
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          repository: yunnysunny/centos
+      - name: Build and push jdk11
+        uses: docker/build-push-action@v3
+        with:
+          context: ./centos
+          push: true
+          tags: yunnysunny/jdk11:latest
+          cache-from: type=registry,ref=yunnysunny/jdk11:buildcache
+          cache-to: type=registry,ref=yunnysunny/jdk11:buildcache,mode=max
+      - name: Update jdk11 description
+        uses: peter-evans/dockerhub-description@v2
+        if: ${{ github.event_name != 'pull_request' }}
+        with:
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          repository: yunnysunny/jdk11

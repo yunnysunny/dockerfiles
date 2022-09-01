@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BASE_SRC_FOLDER=(\
-    "alinode" "centos" "go" "hello" "jmeter" \
+    "centos" "hello" "jmeter" \
     "node-bench" "supervisor" "ubuntu"\
 )
 CUR_PATH=$(dirname "$PWD")
